@@ -12,3 +12,7 @@ Kỹ thuật này là kỹ thuật sử dụng phương pháp tính trung bình 
 
 ### 2.3 Weighted average
 Kỹ thuật này là kỹ thuật sử dụng phương pháp tính trung bình dựa vào độ ưu tiên của mỗi kết quả. Đối với ví dụ phía trên có 5 người không biết gì về hải sản, 2 người là chuyên gia về hải sản. Vậy nên đối với các đánh giá của chuyên gia sẽ có độ ưu tiên để đánh giá nhiều hơn, nói cách khác thì weighted sẽ nhiều hơn.
+
+## 3. Kỹ thuật Ensemble nâng cao
+### 3.1 Staking
+Đây là kỹ thuật mà chúng ta sử dụng kết quả mà các mô hình dự đoán để tạo ra một mô hình mới bằng cách học cách kết hợp đầu ra của các mô hình đơn lẻ đó. Quá trình này giúp cải thiện mô hình cuối cùng bằng cách cân bằng những ưu và nhược điểm của các mô hình khác.
