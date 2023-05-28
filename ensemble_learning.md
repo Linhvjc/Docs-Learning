@@ -15,4 +15,20 @@ Kỹ thuật này là kỹ thuật sử dụng phương pháp tính trung bình 
 
 ## 3. Kỹ thuật Ensemble nâng cao
 ### 3.1 Staking
-Đây là kỹ thuật mà chúng ta sử dụng kết quả mà các mô hình dự đoán để tạo ra một mô hình mới bằng cách học cách kết hợp đầu ra của các mô hình đơn lẻ đó. Quá trình này giúp cải thiện mô hình cuối cùng bằng cách cân bằng những ưu và nhược điểm của các mô hình khác.
+Đây là kỹ thuật mà chúng ta sử dụng kết quả mà các mô hình (các mô hình thường khác nhau) dự đoán để tạo ra một mô hình mới bằng cách học cách kết hợp đầu ra của các mô hình đơn lẻ đó. Quá trình này giúp cải thiện mô hình cuối cùng bằng cách cân bằng những ưu và nhược điểm của các mô hình khác.
+
+**Ví dụ cụ thể:**
+Chúng ta có 2 mô hình base, sau đó chúng ta sẽ cho hai mô hình học trên tập training và sau đó dự đoán trên chính tập training đó. Cuối cùng chúng ta sẽ sử dụng kết quả dự đoán của hai mô hình đó để mô hình chính của chúng ta (meta-model) học. Qua quá trình trên chúng ta đã có được mô hình meta-model là sự kết hợp giữa hai mô hình base. Tuy nhiên khi thực hiện dự đoán dữ liệu mới thì chúng ta cũng phải cần model base đưa ra kết quả dự đoán của chúng, sau đó meta model mới thực hiện dự đoán được. Nó khiến cho chương trình tốn thời gian và bộ nhớ.
+
+### 3.2 Blending
+Đây là kỹ thuật cũng tương tự như với Stacking, tuy nhiên thay vì chúng ta training và dự đoán trên chính tập training thì chúng ta sẽ chia tập training ra thành tập train và valid. Sau đó các mô hình base sẽ tiến hành training trên tập train và dự đoán trên tập valid, sau đó sẽ lấy kết quả đó làm tập training cho meta-model. Blending cũng có nhược điểm tương tự như Stacking
+
+### 3.3 Bagging
+Đây là kỹ thuật mà chúng ta sẽ biến dữ liệu training gốc thành n dữ liệu có kích thước bằng với dữ liệu gốc. Chúng ta sẽ đưa các mô hình base training trên các tập dữ liệu đó, mỗi mô hình sẽ training trên mỗi tập dữ liệu khác nhau. Sau đó chúng ta lưu lại toàn bộ các mô hình trên, khi mà muốn dự đoán tập test, chúng ta sẽ thực hiện lấy toàn bộ mô hình đó ra và dự đoán, sau đó dự đoán và dựa theo các phương pháp sau để lấy ra kết quả cuối cùng
+- Phương pháp voting, kết quả cuối cùng sẽ là kết quả được nhiều mô hình đưa ra nhất
+- Phương pháp lấy ra kết quả trung bình
+- Phương pháp lấy trung bình trọng số
+**Lưu ý:** Việc chia dữ liệu có thể gây ra sự khó hiểu, vậy nên hãy theo dói ví dụ sau, chúng ta có tập dữ liệu gồm [1,2,3,4], chúng ta sẽ thực hiện biến đổi dữ liệu thành các dữ liệu có kích thước giống dữ liệu gốc, tập dữ liệu mới sẽ có thể là [1,1,1,1], [1,3,4,1], [2,2,3,3], [4,3,2,1], [2,1,1,4], .....
+
+### 3.4 Bootsting
+Đây là kỹ thuật mà chúng ta sẽ tạo mô hình đầu tiên sau đó huấn luyện trên tập con ngẫu nhiên và dự đoán trên toàn bộ tập dữ liệu, những điểm dữ liệu có kết quả dự đoán sai sẽ được gán trọng số lớn. Chúng ta sẽ tiếp tục khởi tạo mô hình tiếp theo và thực hiện training trên tập con và dự đoán trên toàn bộ dữ liệu, mô hình này sẽ cố gắng dự đoán đúng trên các dữ liệu đã sai ở mô hình trước đó, chúng ta sẽ tiếp tục như vậy và sau đó kết hợp tất cả các mô hình đó thành một mô hình cuối cùng
