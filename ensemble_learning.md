@@ -27,7 +27,7 @@ Chúng ta có 2 mô hình base, sau đó chúng ta sẽ cho hai mô hình học 
 Đây là kỹ thuật mà chúng ta sẽ biến dữ liệu training gốc thành n dữ liệu có kích thước bằng với dữ liệu gốc. Chúng ta sẽ đưa các mô hình base training trên các tập dữ liệu đó, mỗi mô hình sẽ training trên mỗi tập dữ liệu khác nhau. Sau đó chúng ta lưu lại toàn bộ các mô hình trên, khi mà muốn dự đoán tập test, chúng ta sẽ thực hiện lấy toàn bộ mô hình đó ra và dự đoán, sau đó dự đoán và dựa theo các phương pháp sau để lấy ra kết quả cuối cùng
 - Phương pháp voting, kết quả cuối cùng sẽ là kết quả được nhiều mô hình đưa ra nhất
 - Phương pháp lấy ra kết quả trung bình
-- Phương pháp lấy trung bình trọng số
+- Phương pháp lấy trung bình trọng số <br>
 **Lưu ý:** Việc chia dữ liệu có thể gây ra sự khó hiểu, vậy nên hãy theo dói ví dụ sau, chúng ta có tập dữ liệu gồm [1,2,3,4], chúng ta sẽ thực hiện biến đổi dữ liệu thành các dữ liệu có kích thước giống dữ liệu gốc, tập dữ liệu mới sẽ có thể là [1,1,1,1], [1,3,4,1], [2,2,3,3], [4,3,2,1], [2,1,1,4], .....
 
 ### 3.4 Bootsting
